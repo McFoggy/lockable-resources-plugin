@@ -223,7 +223,7 @@ public class LockStepTest {
 				));
 
 				FreeStyleProject f = story.j.createFreeStyleProject("f");
-				f.addProperty(new RequiredResourcesProperty("resource1", null, null, null));
+				f.addProperty(new RequiredResourcesProperty("resource1", null, null, null, false));
 				f.getBuildersList().add(new TestBuilder() {
 
 					@Override
@@ -263,7 +263,7 @@ public class LockStepTest {
 				SemaphoreStep.waitForStart("wait-inside/1", b1);
 
 				FreeStyleProject f = story.j.createFreeStyleProject("f");
-				f.addProperty(new RequiredResourcesProperty("resource1", null, null, null));
+				f.addProperty(new RequiredResourcesProperty("resource1", null, null, null, false));
 
 				f.scheduleBuild2(0);
 

@@ -9,6 +9,7 @@
  * See the "LICENSE.txt" file for more information.                    *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  -->
+<?jelly escape-by-default='true'?>
 <div>
   This plugin allows to define external resources (such as printers, phones,
   computers) that can be locked by builds. If a build requires an external

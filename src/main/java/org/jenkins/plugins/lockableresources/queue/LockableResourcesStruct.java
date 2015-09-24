@@ -24,6 +24,7 @@ public class LockableResourcesStruct implements Serializable {
 	public String label;
 	public String requiredVar;
 	public String requiredNumber;
+	public boolean injectResourcesProperties;
 
 	public LockableResourcesStruct(RequiredResourcesProperty property,
 			EnvVars env) {
@@ -43,8 +44,11 @@ public class LockableResourcesStruct implements Serializable {
 		requiredVar = property.getResourceNamesVar();
 
 		requiredNumber = property.getResourceNumber();
-		if (requiredNumber != null && requiredNumber.equals("0"))
+		if (requiredNumber != null && requiredNumber.equals("0")) {
 			requiredNumber = null;
+		}
+		
+		injectResourcesProperties = property.isInjectResourcesProperties();
 	}
 
 	public LockableResourcesStruct(String resource) {

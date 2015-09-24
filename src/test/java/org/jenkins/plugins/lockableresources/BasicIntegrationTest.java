@@ -28,7 +28,7 @@ public class BasicIntegrationTest {
 	public void security170fix() throws Exception {
 		LockableResourcesManager.get().createResource("resource1");
 		FreeStyleProject p = j.createFreeStyleProject("p");
-		p.addProperty(new RequiredResourcesProperty("resource1", "resourceNameVar", null, null));
+		p.addProperty(new RequiredResourcesProperty("resource1", "resourceNameVar", null, null, false));
 		p.getBuildersList().add(new PrinterBuilder());
 
 		FreeStyleBuild b1 = p.scheduleBuild2(0).get();

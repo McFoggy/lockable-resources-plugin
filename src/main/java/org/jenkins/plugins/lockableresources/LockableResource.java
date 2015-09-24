@@ -70,17 +70,21 @@ public class LockableResource extends AbstractDescribableImpl<LockableResource> 
 	 * otherwise (freestyle builds) regular Jenkins queue is used.
 	 */
 	private List<StepContext> queuedContexts = new ArrayList<StepContext>();
+	private List<LockableResourceProperty> properties;
 
-	@Deprecated
+	@DataBoundConstructor
 	public LockableResource(
-			String name, String description, String labels, String reservedBy) {
+			String name, String description, String labels, String reservedBy, List<LockableResourceProperty> properties) {
 		this.name = name;
 		this.description = description;
 		this.labels = labels;
+		this.properties = new ArrayList<LockableResourceProperty>();
+		if (properties != null) {
+			this.properties.addAll(properties);
+		}
 		this.reservedBy = Util.fixEmptyAndTrim(reservedBy);
 	}
 
-	@DataBoundConstructor
 	public LockableResource(String name) {
 		this.name = name;
 	}
@@ -120,6 +124,11 @@ public class LockableResource extends AbstractDescribableImpl<LockableResource> 
 
 	public Integer getContextsInQueue() {
 		return queuedContexts.size();
+	}
+
+	@Exported
+	public List<LockableResourceProperty> getProperties() {
+		return properties;
 	}
 
 	public boolean isValidLabel(String candidate, Map<String, Object> params) {
